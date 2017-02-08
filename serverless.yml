@@ -1,0 +1,24 @@
+service: serverless-reason-test
+
+frameworkVersion: "=1.6.1"
+
+custom:
+  nativeEntry:
+    - src/currentTime
+  # jsEntry:
+  #   - src/currentTime
+
+plugins:
+  - serverless-reason-plugin
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+functions:
+  hello:
+    handler: handler.run
+    events:
+      - http:
+          path: hello
+          method: get
