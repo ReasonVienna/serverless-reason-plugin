@@ -1,6 +1,7 @@
 'use strict';
 
 const execSync = require('child_process').execSync
+const path = require('path')
 
 class ServerlessPlugin {
   constructor(serverless, options) {
@@ -23,7 +24,16 @@ class ServerlessPlugin {
 
   build() {
     this.serverless.cli.log('Hello from Serverless!');
-    execSync('eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I src ./src/Test.native 2>&1 | berror.native --path-to-refmttype refmttype', { stdio:[0,1,2] });
+    // TODO add node_modules
+    const nodeModulesBinPath = path.join(process.cwd(), 'node_modules', '.bin')
+    // Note: only for local development
+    const serverlessPluginBinPath = path.join(__dirname, 'node_modules', '.bin')
+    const envPath = `${process.env.PATH}:${serverlessPluginBinPath}:${nodeModulesBinPath}`
+    const env = Object.assign({}, process.env, { PATH: envPath })
+    const rootPath = process.cwd()
+    const filePath = path.resolve(rootPath, 'Test.native')
+    execSync(`eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I ${rootPath} ${filePath} 2>&1 | berror.native --path-to-refmttype refmttype`, { stdio:[0,1,2], env, cwd: __dirname });
+    // execSync('eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I src ./Test.native 2>&1 | berror.native --path-to-refmttype refmttype', { stdio:[0,1,2] });
   }
 }
 
