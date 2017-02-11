@@ -1,6 +1,9 @@
 node_modules
 .serverless
 
+# Custom ReasonML
+*.native
+
 # ReasonML
 _build
 *~
