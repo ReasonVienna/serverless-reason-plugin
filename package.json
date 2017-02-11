@@ -9,17 +9,18 @@
     }
   },
   "devDependencies": {
-    "@opam-alpha/merlin": "^ 2.5.0"
+    "@opam-alpha/merlin": "^ 2.5.0",
+    "archiver": "^1.3.0"
   },
   "scripts": {
     "reasonBuild": "eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I . ./Test.native 2>&1 | berror.native --path-to-refmttype refmttype",
     "reasonbuild": "npm run reasonBuild"
   },
   "dependencies": {
-    "ocamlBetterErrors": "0.1.0",
-    "reason": "^ 1.6.0",
     "@opam-alpha/ocaml": "4.2.3",
     "dependency-env": "^0.1.1",
-    "nopam": "^0.1.0"
+    "nopam": "^0.1.0",
+    "ocamlBetterErrors": "0.1.0",
+    "reason": "^ 1.6.0"
   }
 }

@@ -2,11 +2,15 @@ service: serverless-reason-test
 
 frameworkVersion: "=1.6.1"
 
-custom:
-  nativeEntry:
-    - src/currentTime
-  # jsEntry:
-  #   - src/currentTime
+# custom:
+#   nativeEntry:
+#     - Test
+#  jsEntry:
+#     - src/currentTime
+
+# Set this via the Plugin?
+package:
+  individually: true
 
 plugins:
   - serverless-reason-plugin
@@ -17,7 +21,8 @@ provider:
 
 functions:
   hello:
-    handler: handler.run
+    handler: Test
+    compileReason: native
     events:
       - http:
           path: hello
