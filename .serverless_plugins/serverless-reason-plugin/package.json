@@ -1,21 +1,4 @@
 {
   "name": "serverless-reason-plugin",
-  "version": "0.0.1",
-  "exportedEnvVars": {
-    "OCAMLRUNPARAM": {
-      "global": true,
-      "globalCollisionBehavior": "fail",
-      "val": "b"
-    }
-  },
-  "devDependencies": {
-    "@opam-alpha/merlin": "^ 2.5.0"
-  },
-  "dependencies": {
-    "ocamlBetterErrors": "0.1.0",
-    "reason": "^ 1.6.0",
-    "@opam-alpha/ocaml": "4.2.3",
-    "dependency-env": "^0.1.1",
-    "nopam": "^0.1.0"
-  }
+  "version": "0.0.1"
 }

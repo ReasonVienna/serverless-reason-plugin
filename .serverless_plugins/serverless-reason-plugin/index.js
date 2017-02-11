@@ -32,7 +32,7 @@ class ServerlessPlugin {
     const env = Object.assign({}, process.env, { PATH: envPath })
     const rootPath = process.cwd()
     const filePath = path.resolve(rootPath, 'Test.native')
-    execSync(`eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I ${rootPath} ${filePath} 2>&1 | berror.native --path-to-refmttype refmttype`, { stdio:[0,1,2], env, cwd: __dirname });
+    execSync(`eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I ${rootPath} ${filePath} 2>&1 | berror.native --path-to-refmttype refmttype`, { stdio:[0,1,2], env });
     // execSync('eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I src ./Test.native 2>&1 | berror.native --path-to-refmttype refmttype', { stdio:[0,1,2] });
   }
 }

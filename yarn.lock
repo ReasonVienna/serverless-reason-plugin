@@ -273,7 +273,7 @@ ocamlBetterErrors@0.1.0:
 
 "reason@git://github.com/facebook/reason.git":
   version "1.7.4"
-  resolved "git://github.com/facebook/reason.git#2f5fbf48abc32149006052788f042569e48fe43d"
+  resolved "git://github.com/facebook/reason.git#74df837b34053955d2f74cf09e6240fb145d2d64"
   dependencies:
     "@opam-alpha/menhir" ">= 20160303.0.0"
     "@opam-alpha/merlin-extend" "^ 0.3.0"
