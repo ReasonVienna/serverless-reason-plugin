@@ -37,7 +37,7 @@ class ServerlessPlugin {
         return;
       }
 
-      const filePath = path.join('.', `${func.handler}.native`)
+      const filePath = `./${func.handler}.native`
       execSync(`eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I . ${filePath} 2>&1 | berror.native --path-to-refmttype refmttype`, { stdio:[0,1,2], env });
 
       func.handler = 'index.run'
