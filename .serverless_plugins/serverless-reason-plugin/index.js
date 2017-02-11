@@ -1,6 +1,7 @@
 'use strict';
 
 const execSync = require('child_process').execSync
+const fs = require('fs')
 const path = require('path')
 const archiver = require('archiver')
 
@@ -26,8 +27,8 @@ class ServerlessPlugin {
   build() {
     this.serverless.cli.log('Build Test.native');
 
-    const serverlessPluginBinPath = path.join(__dirname, 'node_modules', '.bin')
-    const envPath = `${process.env.PATH}:${serverlessPluginBinPath}`
+    const nodeModulesBinPath = path.join(process.cwd(), 'node_modules', '.bin')
+    const envPath = `${process.env.PATH}:${nodeModulesBinPath}`
     const env = Object.assign({}, process.env, { PATH: envPath })
 
     // replace with Rambda
@@ -40,17 +41,17 @@ class ServerlessPlugin {
       const filePath = `./${func.handler}.native`
       execSync(`eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I . ${filePath} 2>&1 | berror.native --path-to-refmttype refmttype`, { stdio:[0,1,2], env });
 
-      func.handler = 'index.run'
-      func.artifact = `${key}.zip`
+      func.handler = 'handler.run'
+      func.artifact = path.join(process.cwd(), '.serverless', `${key}.zip`)
 
-      const output = fs.createWriteStream(path.join(__dirname, func.artifact))
+      const output = fs.createWriteStream(func.artifact)
       const archive = archiver('zip', {
-          store: true // Sets the compression method to STORE.
+        store: true // Sets the compression method to STORE.
       })
       archive.pipe(output)
-      archive.append(fs.createReadStream(filePath), { name: 'index.native' })
-      const handlerPath = path.join('.', 'handler.js')
-      archive.append(fs.createReadStream(handlerPath), { name: 'index.js' })
+      archive.append(fs.createReadStream(filePath), { name: 'Index.native' })
+      const handlerPath = path.join(__dirname, 'handler.js')
+      archive.append(fs.createReadStream(handlerPath), { name: 'handler.js' })
       archive.finalize()
     })
   }
