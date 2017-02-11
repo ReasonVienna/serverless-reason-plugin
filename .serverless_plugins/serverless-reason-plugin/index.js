@@ -11,7 +11,7 @@ class ServerlessPlugin {
     this.options = options;
 
     this.commands = {
-      build: {
+      reasonBuild: {
         usage: 'Build the reason targets (also done on deploy)',
         lifecycleEvents: [
           'build',
@@ -20,7 +20,7 @@ class ServerlessPlugin {
     };
 
     this.hooks = {
-      'build:build': this.build.bind(this),
+      'reasonBuild:build': this.build.bind(this),
       'after:deploy:initialize': this.build.bind(this),
     };
   }
