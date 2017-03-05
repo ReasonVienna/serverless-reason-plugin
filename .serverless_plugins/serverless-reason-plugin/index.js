@@ -60,10 +60,13 @@ class ServerlessPlugin {
       })
       archive.pipe(output)
       // Add the Binary to the zip and make it executable
-      archive.append(fs.createReadStream(filePath), { name: 'Index.native', mode: 777 })
-      // Add the JS shim to the zip
-      const handlerPath = path.join(__dirname, 'handler.js')
-      archive.append(fs.createReadStream(handlerPath), { name: 'handler.js' })
+      archive.append(fs.createReadStream(filePath), { name: 'Index.native', mode: parseInt('0755',8) });
+
+      ['handler.js', 'byline.js'].forEach((filename) => {
+        const filepath = path.join(__dirname, filename);
+        archive.append(fs.createReadStream(filepath), { name: filename })
+      });
+
       archive.finalize()
 
       const promise = new Promise((zipResolve, zipReject) => {
