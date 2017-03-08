@@ -24,3 +24,7 @@ functions:
   function2:
     handler: Function2
     compileReason: native
+    events:
+      - http:
+          path: function2
+          method: get

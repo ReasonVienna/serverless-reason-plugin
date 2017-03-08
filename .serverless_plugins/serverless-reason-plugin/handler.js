@@ -33,9 +33,14 @@ module.exports.run = (event, context, callback) => {
     console.log(code);
     console.log(signal);
     console.log(lines);
-    const stdout = lines.join('\n');
+    // we need to use timeout here since exit happens before out.on('data')
+    setTimeout(() => {
+      const stdout = lines.join('\n');
+      const final = stdout || '{}'
+      console.log(final)
 
-    callback(null, JSON.parse(stdout));
+      callback(null, JSON.parse(final));
+    }, 1)
   });
 
   // const response = {
