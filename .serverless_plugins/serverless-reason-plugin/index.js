@@ -40,7 +40,7 @@ class ServerlessPlugin {
       // Compile the Reason file for this specific function
       this.serverless.cli.log(`Compile ${func.handler}.re for the function '${key}'...`);
       const filePath = `./${func.handler}.native`
-      execSync(`eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I . ${filePath} 2>&1 | berror.native --path-to-refmttype refmttype`, { stdio:[0,1,2], env });
+      execSync(`eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I . ${filePath}`, { stdio:[0,1,2], env });
 
       const serverlessDir = path.join(process.cwd(), '.serverless')
       func.handler = 'handler.run'
