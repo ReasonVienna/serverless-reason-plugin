@@ -1,4 +1,4 @@
-FROM amazonlinux:2016.09
+FROM centos:7
 
 # INSTALL NODE AND YARN
 WORKDIR /app
@@ -23,5 +23,5 @@ RUN curl -fSL -o yarn.js "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-legac
 # Do our application specific stuff
 COPY . /app/
 
-RUN yarn install \
-  && yarn global add serverless --prefix /usr/local
+#RUN yarn install \
+#  && yarn global add serverless --prefix /usr/local
