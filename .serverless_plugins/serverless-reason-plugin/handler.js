@@ -42,13 +42,4 @@ module.exports.run = (event, context, callback) => {
       callback(null, JSON.parse(final));
     }, 1)
   });
-
-  // const response = {
-  //   status: 200,
-  //   body: JSON.stringify({
-  //     message: stdout
-  //   })
-  // };
-  //
-  // callback(null, response);
 };
