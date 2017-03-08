@@ -35,7 +35,7 @@ module.exports.run = (event, context, callback) => {
     console.log(lines);
     const stdout = lines.join('\n');
 
-    callback(null, { message: stdout });
+    callback(null, JSON.parse(stdout));
   });
 
   // const response = {
