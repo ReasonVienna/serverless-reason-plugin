@@ -38,12 +38,11 @@ class ServerlessPlugin {
       }
 
       // Compile the Reason file for this specific function
+      const filePath = `./${func.handler}.native`
       this.serverless.cli.log(`Compile ${func.handler}.re for the function '${key}'...`);
-      execSync(`./run.sh`, { stdio:[0,1,2], env });
-
-      const filePath = './_build/Function2.native'
-      // const filePath = `./${func.handler}.native`
-      // execSync(`eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I . ${filePath}`, { stdio:[0,1,2], env });
+      // const filePath = './_build/Function2.native'
+      const command = 'SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )" && VOLUME=${SCRIPT_DIR}/_build:/app/_build && docker run -v $VOLUME -it serverless:reasonml node compile.js'
+      execSync(`${command} ${filePath}`, { stdio:[0,1,2], env });
 
       const serverlessDir = path.join(process.cwd(), '.serverless')
       func.handler = 'handler.run'
@@ -63,6 +62,7 @@ class ServerlessPlugin {
       })
       archive.pipe(output)
       // Add the Binary to the zip and make it executable
+
       archive.append(fs.createReadStream(filePath), { name: 'Index.native', mode: parseInt('0755',8) });
 
       ['handler.js', 'byline.js'].forEach((filename) => {

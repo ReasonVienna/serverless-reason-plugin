@@ -19,5 +19,6 @@ functions:
 docker build . -t serverless:reasonml
 
 # Use this script to automatically run the built container
-./run.sh
+./run.sh <relative filePath>
+# ./run.sh Function2.native
 ```
