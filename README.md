@@ -21,3 +21,14 @@ docker build . -t serverless:reasonml
 # Use this script to automatically run the built container
 ./run.sh
 ```
+
+## Invoke the Reason native file to test reason integration
+
+```bash
+./Function2.native <<EOF
+{
+  "id": "398eb027",
+  "name": "John Doe"
+}
+EOF
+```
