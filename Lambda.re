@@ -1,12 +1,14 @@
 open Yojson.Basic.Util;
 
+let jsonInput = Yojson.Basic.stream_from_channel stdin;
+
 module Lambda = {
-  let return json => {
-    Yojson.Basic.to_channel stdout json;
-    exit 0
-  };
+  let return json => print_endline (Yojson.Basic.to_string json);
   let run ::callback => {
-    let jsonInput = Yojson.Basic.from_channel stdin;
-    callback event::jsonInput
+    let jsonValue = Stream.next jsonInput;
+    let body = `Assoc [("message", `String "Hello World!")];
+    let stringBody = Yojson.Basic.to_string body;
+    print_endline stringBody
+    /* callback event::jsonValue */
   };
 };

@@ -1,48 +1,39 @@
 'use strict';
 
+process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT']
+
 const fs = require('fs');
 const os = require("os");
 const child = require('child_process');
 const byline = require('./byline');
+let callback;
 
-process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT']
+const proc = child.spawn('./Index.native', { stdio: ['pipe', 'pipe', process.stderr] });
 
-module.exports.run = (event, context, callback) => {
-  console.log('event', event)
-  const stat = fs.statSync('./Index.native');
+const out = byline(proc.stdout);
 
-  console.log('file stat:', stat);
+out.on('data', (line) => {
+  console.log('DATA: ' + line);
+  var msg = JSON.parse(line)
+  callback(null, msg)
+});
 
-  const proc = child.spawn('./Index.native', { stdio: ['pipe', 'pipe', process.stderr] });
+proc.on('error', (err) => {
+  console.log('ERROR: ' + err.message);
+  callback(new Error(`Failed execution: ${err.message}`));
+  process.exit(1)
+});
 
-  const out = byline(proc.stdout);
+proc.on('exit', (code, signal) => {
+  console.error('ERROR: ', code, ' ', signal)
+  process.exit(1)
+});
 
-  const lines = [];
+module.exports.run = (event, context, cb) => {
+  // console.log('event', event)
+  callback = cb
 
-  out.on('data', (line) => {
-    console.log('DATA: ' + line);
-    lines.push(line);
-  });
-
-  proc.on('error', (err) => {
-    console.log('ERROR: ' + err.message);
-    callback(new Error(`Failed execution: ${err.message}`));
-  });
-
-  proc.on('exit', (code, signal) => {
-    console.log('EXIT');
-    console.log(code);
-    console.log(signal);
-    console.log(lines);
-    // we need to use timeout here since exit happens before out.on('data')
-    setTimeout(() => {
-      const stdout = lines.join('\n');
-      const final = stdout || '{}'
-      console.log(final)
-
-      callback(null, JSON.parse(final));
-    }, 1)
-  });
-
-  proc.stdin.end(JSON.stringify(event)+'\n');
+  context.callbackWaitsForEmptyEventLoop = false
+  proc.stdin.write(JSON.stringify(event)+'\n');
+  proc.stdin.write(os.EOL);
 };
