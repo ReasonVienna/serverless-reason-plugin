@@ -4,4 +4,4 @@ SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 VOLUME=${SCRIPT_DIR}:/app
 
 # docker run -v $VOLUME -it serverless:reasonml /bin/bash
-docker run -v $VOLUME -it serverless:reasonml node compile.js
+docker run -v $VOLUME -it serverless:reasonml npm install
