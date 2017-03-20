@@ -9,7 +9,7 @@
     }
   },
   "scripts": {
-    "reasonBuild": "eval $(dependencyEnv) && nopam && rebuild -pkg yojson -use-ocamlfind -cflag -w -cflag -40 -I src ./Function2.native"
+    "reasonDebugBuild": "eval $(dependencyEnv) && nopam && rebuild -pkg yojson -use-ocamlfind -cflag -w -cflag -40 -I src ./Function2.native"
   },
   "devDependencies": {
     "@opam-alpha/merlin": "^ 2.5.0",

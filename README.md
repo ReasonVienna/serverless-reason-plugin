@@ -22,9 +22,10 @@ docker build . -t serverless:reasonml
 ./run.sh
 ```
 
-## Invoke the Reason native file to test reason integration
+## Invoke the Reason native file locally to test reason integration
 
 ```bash
+npm run reasonDebugBuild
 ./Function2.native <<EOF
 {
   "id": "398eb027",

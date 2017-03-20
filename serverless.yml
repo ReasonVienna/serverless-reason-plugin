@@ -2,7 +2,7 @@ service: serverless-reason-test
 
 frameworkVersion: "=1.8.0"
 
-# Set this via the Plugin?
+# TODO Warn if not set and fail!
 package:
   individually: true
 
@@ -15,16 +15,9 @@ provider:
 
 functions:
   hello:
-    handler: Test
-    compileReason: native
-    events:
-      - http:
-          path: hello
-          method: get
-  function2:
     handler: Function2
     compileReason: native
     events:
       - http:
-          path: function2
+          path: hello
           method: get
