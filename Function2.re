@@ -2,7 +2,7 @@ open Lambda;
 
 let myFunction ::event => {
   let person = `Assoc [("name", `String "Anil")];
-  Lambda.lambdaReturn person
+  Lambda.return person
 };
 
-Lambda.lambdaHandler callback::myFunction;
+Lambda.run callback::myFunction;
