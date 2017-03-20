@@ -35,5 +35,5 @@ module.exports.run = (event, context, cb) => {
 
   context.callbackWaitsForEmptyEventLoop = false
   proc.stdin.write(JSON.stringify(event)+'\n');
-  proc.stdin.write(os.EOL);
+  // proc.stdin.write(os.EOL);
 };
