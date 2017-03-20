@@ -1,16 +1,17 @@
 'use strict';
 
 const fs = require('fs');
+const os = require("os");
 const child = require('child_process');
 const byline = require('./byline');
 
 process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT']
 
 module.exports.run = (event, context, callback) => {
+  console.log('event', event)
   const stat = fs.statSync('./Index.native');
 
-  console.log('file stat:');
-  console.log(stat);
+  console.log('file stat:', stat);
 
   const proc = child.spawn('./Index.native', { stdio: ['pipe', 'pipe', process.stderr] });
 
@@ -42,4 +43,6 @@ module.exports.run = (event, context, callback) => {
       callback(null, JSON.parse(final));
     }, 1)
   });
+
+  proc.stdin.end(JSON.stringify(event)+'\n');
 };

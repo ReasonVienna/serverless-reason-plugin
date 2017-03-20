@@ -15,6 +15,10 @@ functions:
 ## Docker stuff
 
 ```
+# Make sure docker-machine is up
+docker-machine start <name of your machine>
+eval $(docker-machine env <name of your machine>)
+
 # Before running, build your docker container
 docker build . -t serverless:reasonml
 
@@ -26,10 +30,10 @@ docker build . -t serverless:reasonml
 
 ```bash
 npm run reasonDebugBuild
-./Function2.native <<EOF
+./MyFunction.native <<EOF
 {
-  "id": "398eb027",
-  "name": "John Doe"
+  "statusCode": 200,
+  "body": "{\"message\":\"Hello World"}"
 }
 EOF
 ```
