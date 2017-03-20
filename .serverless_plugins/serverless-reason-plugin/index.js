@@ -39,8 +39,11 @@ class ServerlessPlugin {
 
       // Compile the Reason file for this specific function
       this.serverless.cli.log(`Compile ${func.handler}.re for the function '${key}'...`);
-      const filePath = `./${func.handler}.native`
-      execSync(`eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I . ${filePath} 2>&1 | berror.native --path-to-refmttype refmttype`, { stdio:[0,1,2], env });
+      execSync(`./run.sh`, { stdio:[0,1,2], env });
+
+      const filePath = './_build/Function2.native'
+      // const filePath = `./${func.handler}.native`
+      // execSync(`eval $(dependencyEnv) && nopam && rebuild -use-ocamlfind -cflag -w -cflag -40 -I . ${filePath}`, { stdio:[0,1,2], env });
 
       const serverlessDir = path.join(process.cwd(), '.serverless')
       func.handler = 'handler.run'
@@ -60,10 +63,13 @@ class ServerlessPlugin {
       })
       archive.pipe(output)
       // Add the Binary to the zip and make it executable
-      archive.append(fs.createReadStream(filePath), { name: 'Index.native', mode: 777 })
-      // Add the JS shim to the zip
-      const handlerPath = path.join(__dirname, 'handler.js')
-      archive.append(fs.createReadStream(handlerPath), { name: 'handler.js' })
+      archive.append(fs.createReadStream(filePath), { name: 'Index.native', mode: parseInt('0755',8) });
+
+      ['handler.js', 'byline.js'].forEach((filename) => {
+        const filepath = path.join(__dirname, filename);
+        archive.append(fs.createReadStream(filepath), { name: filename })
+      });
+
       archive.finalize()
 
       const promise = new Promise((zipResolve, zipReject) => {

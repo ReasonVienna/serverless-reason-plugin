@@ -1,8 +1,8 @@
-/**
- * Welcome to Reason.
- */
-print_string "!!!!!!\n";
-let msg = "Hello World v2!";
-print_string msg;
-print_newline ();
-print_string "!!!!!!\n";
+open Lambda;
+
+let myFunction ::event => {
+  let person = `Assoc [("name", `String "Anil")];
+  Lambda.return person
+};
+
+Lambda.run callback::myFunction;

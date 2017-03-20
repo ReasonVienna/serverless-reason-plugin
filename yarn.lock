@@ -66,11 +66,11 @@
   dependencies:
     ocamlfind-actual "git+https://github.com/npm-opam/ocamlfind.git#1.6.2"
 
-"@opam-alpha/re@*":
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/@opam-alpha/re/-/re-1.7.1.tgz#6d4542ca6cc3177d57176475f527060153dd690c"
+"@opam-alpha/result@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@opam-alpha/result/-/result-1.2.0.tgz#cdb0a208f6c6c0be98748eeedb63a3982ace6f71"
   dependencies:
-    re-actual "git://github.com/npm-opam/re.git#1.7.1"
+    result-actual "git://github.com/npm-opam/result.git#1.2.0"
 
 "@opam-alpha/yojson@*":
   version "1.3.3"
@@ -104,8 +104,8 @@ archiver@^1.3.0:
     zip-stream "^1.1.0"
 
 async@^2.0.0:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/async/-/async-2.1.4.tgz#2d2160c7788032e4dd6cbe2502f1f9a2c8f6cde4"
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.1.5.tgz#e587c68580994ac67fc56ff86d3ac56bdbe810bc"
   dependencies:
     lodash "^4.14.0"
 
@@ -358,15 +358,6 @@ normalize-path@^2.0.0:
   version "4.2.3"
   resolved "git+https://github.com/npm-opam/ocaml.git#0bb98be8e5233a02282ed8de0c8965677ddbde33"
 
-ocamlBetterErrors@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/ocamlBetterErrors/-/ocamlBetterErrors-0.1.0.tgz#3b4d52e018f9b24abba09a4dc894a572f788aede"
-  dependencies:
-    "@opam-alpha/re" "*"
-    dependency-env "*"
-    nopam "*"
-    reason "git://github.com/facebook/reason.git"
-
 "ocamlfind-actual@git+https://github.com/npm-opam/ocamlfind.git#1.6.2":
   version "1.6.2"
   resolved "git+https://github.com/npm-opam/ocamlfind.git#f6ea48c7628210d477ead863d32feba2357b9afe"
@@ -388,7 +379,7 @@ once@~1.3.0:
   dependencies:
     wrappy "1"
 
-"opam-installer-bin@https://github.com/yunxing/opam-installer-bin.git":
+"opam-installer-bin@git+https://github.com/yunxing/opam-installer-bin.git", "opam-installer-bin@https://github.com/yunxing/opam-installer-bin.git":
   version "0.0.0"
   resolved "https://github.com/yunxing/opam-installer-bin.git#689ede681217f76fb2f82a9f4528e192a5b543ba"
   dependencies:
@@ -399,20 +390,13 @@ path-is-absolute@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
 
+path-parse@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.5.tgz#3c1adf871ea9cd6c9431b6ea2bd74a0ff055c4c1"
+
 process-nextick-args@~1.0.6:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
-
-"re-actual@git://github.com/npm-opam/re.git#1.7.1":
-  version "1.7.1"
-  resolved "git://github.com/npm-opam/re.git#9da39424a8a4a12a768f90b1e5cc4401102b6834"
-  dependencies:
-    "@opam-alpha/ocamlbuild" "*"
-    "@opam-alpha/ocamlfind" "*"
-    dependency-env "*"
-    nopam "*"
-    opam-installer-bin "https://github.com/yunxing/opam-installer-bin.git"
-    substs "https://github.com/yunxing/substs.git"
 
 "react-bin@https://github.com/reasonml/react-bin":
   version "1.2.2"
@@ -423,8 +407,8 @@ process-nextick-args@~1.0.6:
     nopam "*"
 
 readable-stream@^2.0.0, readable-stream@^2.0.5:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.2.tgz#a9e6fec3c7dda85f8bb1b3ba7028604556fc825e"
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.3.tgz#9cf49463985df016c8ae8813097a9293a9b33729"
   dependencies:
     buffer-shims "^1.0.0"
     core-util-is "~1.0.0"
@@ -434,35 +418,34 @@ readable-stream@^2.0.0, readable-stream@^2.0.5:
     string_decoder "~0.10.x"
     util-deprecate "~1.0.1"
 
-"reason@^ 1.6.0":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/reason/-/reason-1.7.4.tgz#3a53f343269ef2e39c41c82322a46996d7df5c08"
+"reason@^ 1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/reason/-/reason-1.9.0.tgz#8493a3325bc56c14bda62ba116c8611f82b60ebb"
   dependencies:
     "@opam-alpha/menhir" ">= 20160303.0.0"
     "@opam-alpha/merlin-extend" "^ 0.3.0"
     "@opam-alpha/ocaml" "4.2.3"
     "@opam-alpha/ocamlfind" "*"
-    dependency-env "*"
-    nopam "*"
-    opam-installer-bin "https://github.com/yunxing/opam-installer-bin.git"
-    utop-bin "https://github.com/reasonml/utop-bin"
-
-"reason@git://github.com/facebook/reason.git":
-  version "1.7.4"
-  resolved "git://github.com/facebook/reason.git#74df837b34053955d2f74cf09e6240fb145d2d64"
-  dependencies:
-    "@opam-alpha/menhir" ">= 20160303.0.0"
-    "@opam-alpha/merlin-extend" "^ 0.3.0"
-    "@opam-alpha/ocaml" "4.2.3"
-    "@opam-alpha/ocamlfind" "*"
+    "@opam-alpha/result" "1.2.0"
     dependency-env "*"
     nopam "*"
     opam-installer-bin "https://github.com/yunxing/opam-installer-bin.git"
     utop-bin "https://github.com/reasonml/utop-bin"
 
 resolve@^1.1.7:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.3.2.tgz#1f0442c9e0cbb8136e87b9305f932f46c7f28235"
+  dependencies:
+    path-parse "^1.0.5"
+
+"result-actual@git://github.com/npm-opam/result.git#1.2.0":
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.2.0.tgz#9589c3f2f6149d1417a40becc1663db6ec6bc26c"
+  resolved "git://github.com/npm-opam/result.git#4d1f6b57414dd336a37b8fad935bf7a9a78c884b"
+  dependencies:
+    dependency-env "https://github.com/npm-ml/dependency-env.git"
+    nopam "https://github.com/yunxing/nopam.git"
+    opam-installer-bin "https://github.com/yunxing/opam-installer-bin.git"
+    substs "https://github.com/yunxing/substs.git"
 
 string_decoder@~0.10.x:
   version "0.10.31"
@@ -485,9 +468,9 @@ util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
-"utop-bin@https://github.com/reasonml/utop-bin":
+"utop-bin@git+https://github.com/reasonml/utop-bin.git":
   version "1.19.2"
-  resolved "https://github.com/reasonml/utop-bin#5e9e322c1f264c0d9e8abb9f85e5472de1c8147d"
+  resolved "git+https://github.com/reasonml/utop-bin.git#5e9e322c1f264c0d9e8abb9f85e5472de1c8147d"
   dependencies:
     "@opam-alpha/ocamlfind" "*"
     camomile-bin "https://github.com/reasonml/camomile-bin"
