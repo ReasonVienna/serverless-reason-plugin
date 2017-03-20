@@ -30,10 +30,9 @@ proc.on('exit', (code, signal) => {
 });
 
 module.exports.run = (event, context, cb) => {
-  // console.log('event', event)
+  console.log('event', event)
   callback = cb
 
   context.callbackWaitsForEmptyEventLoop = false
   proc.stdin.write(JSON.stringify(event)+'\n');
-  // proc.stdin.write(os.EOL);
 };
