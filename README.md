@@ -2,14 +2,13 @@
 
 ## Install
 
-Make sure you have Docker up and running.
+Build your Docker container.
 
 ```sh
-# Before running, build your docker container
 docker build . -t serverless:reasonml
 ```
 
-Run the following script to install the build environment inside docker:
+Run the following script to install the build environment inside Docker: 
 
 ```sh
 ./install.sh
