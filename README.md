@@ -5,10 +5,6 @@
 Make sure you have Docker up and running.
 
 ```sh
-# Make sure docker-machine is up
-docker-machine start <name of your machine>
-eval $(docker-machine env <name of your machine>)
-
 # Before running, build your docker container
 docker build . -t serverless:reasonml
 ```
